@@ -53,12 +53,12 @@ func TestGetAPIKey(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			key, err := GetAPIKey(tt.headers)
-			
+
 			// Check key
 			if key != tt.expectedKey {
 				t.Errorf("expected key %q, got %q", tt.expectedKey, key)
 			}
-			
+
 			// Check error
 			if tt.expectedErrMsg == "" {
 				if err != nil {
@@ -78,7 +78,7 @@ func TestGetAPIKey(t *testing.T) {
 func TestGetAPIKeyWithErrVariable(t *testing.T) {
 	headers := http.Header{}
 	_, err := GetAPIKey(headers)
-	
+
 	if err != ErrNoAuthHeaderIncluded {
 		t.Errorf("expected error to be ErrNoAuthHeaderIncluded, got %v", err)
 	}
